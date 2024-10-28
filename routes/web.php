@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $tasks = Task::where('title', 'LIKE', '%Quét nhà%')->orWhere('completed', '=', 'Chưa hoàn thành')->get();
+    return view('result_filter', compact('tasks'));
 });
