@@ -1,29 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
+@extends('layout')
+@section('content')
     <form action="{{ route('task.store') }}" method="POST">
         @csrf
-        <input type="text" name="title" placeholder="Nhập tiêu đề công việc">
-        <input type="text" name="description" placeholder="Nhập mô tả công việc">
-        <select name="completed">
-            <option value="Chưa hoàn thành">Chưa hoàn thành</option>
-            <option value="Hoàn thành">Hoàn thành</option>
-        </select>
-        <select name="project_id">
-            @foreach ($projects as $project)
-                <option value="{{ $project->id }}">{{ $project->name }}</option>
-            @endforeach
-        </select>
-        <button type="submit">Tạo công việc</button>
-    </form>
-</body>
+        <legend>Create Task</legend>
+        <div class="mb-3">
+            <label for="titleTextInput" class="form-label">Tiêu đề</label>
+            <input type="text" id="titleTextInput" class="form-control" placeholder="Enter title" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="descriptionTextInput" class="form-label">Mô tả</label>
+            <input type="text" id="descriptionTextInput" class="form-control" placeholder="Enter description"
+                name="description">
+        </div>
+        <div class="mb-3">
+            <label for="completedSelect" class="form-label">Trạng thái</label>
+            <select id="completedSelect" class="form-select" name="completed">
+                <option value="Chưa hoàn thành">Chưa hoàn thành</option>
+                <option value="Hoàn thành">Hoàn thành</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="projectSelect" class="form-label">Dự án</label>
+            <select id="projectSelect" class="form-select" name="project_id">
+                @foreach ($projects as $project)
+                    <option value="{{ $project->id }}">{{ $project->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-</html>
+        <button type="submit" class="btn btn-primary">Tạo</button>
+
+    </form>
+@endsection

@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
+@extends('layout')
+@section('content')
     <form action="" method="POST">
         @csrf
-        <input type="text" name="name" placeholder="Nhập tên dự án">
-        <input type="text" name="description" placeholder="Mô tả dự án">
-        <button type="submit">Tạo dự án</button>
-    </form>
-</body>
+        <legend>Create Project</legend>
+        <div class="mb-3">
+            <label for="nameTextInput" class="form-label">Tên dự án</label>
+            <input type="text" id="nameTextInput" class="form-control" placeholder="Enter name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="descriptionTextInput" class="form-label">Mô tả</label>
+            <input type="text" id="descriptionTextInput" class="form-control" placeholder="Enter description"
+                name="description">
+        </div>
 
-</html>
+        <button type="submit" class="btn btn-primary">Tạo</button>
+    </form>
+@endsection
