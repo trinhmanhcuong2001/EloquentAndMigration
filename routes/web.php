@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Task;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $tasks = Task::where('title', 'LIKE', '%Quét nhà%')->orWhere('completed', '=', 'Chưa hoàn thành')->get();
-    return view('result_filter', compact('tasks'));
-});
+Route::get('/', [TaskController::class, 'index'])->name('index');
